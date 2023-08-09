@@ -1,0 +1,4 @@
+# export the robot model and robot env
+export ROS_MASTER_URI=http://10.100.47.83:11311
+export ROS_HOSTNAME=10.100.47.83
+export TURTLEBOT3_MODEL=waffle_pi

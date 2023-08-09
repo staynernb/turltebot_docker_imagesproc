@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+    turtlebot-humble:
+        container_name: docker-turtle-humble
+        build: .
+        image: turtlebot-docker-humble
+        network_mode: "host"
+        restart: unless-stopped                 # Restart the container unless manually stopped
+        volumes:
+          - /tmp/.X11-unix:/tmp/.X11-unix:rw    # GUI related
+          - type: bind                          # Mount Persistent Directory   
+            source: ./turtlebot_docker_shared
+            target: /app
+        environment:
+            - PYTHONUNBUFFERED=1
+            - DISPLAY                           # GUI related
+            - QT_X11_NO_MITSHM=1                # GUI related
+
+        privileged: true                        # GUI related                       
+
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+
+    turtlebot-humble-win:
+        extends:
+            service: turtlebot-humble
+        environment:
+            - DISPLAY=host.docker.internal:0.0  # GUI related
+
+    turtlebot-humble-nvidia:
+        extends:
+            service: turtlebot-humble
+        environment:
+            - NVIDIA_VISIBLE_DEVICES=all        # GUI related
+            - NVIDIA_DRIVER_CAPABILITIES=all    # GUI related
+        runtime: nvidia  
+
+    turtlebot-humble-win-nvidia:
+        extends:
+            service: turtlebot-humble-win
+        environment:
+            - NVIDIA_VISIBLE_DEVICES=all        # GUI related
+            - NVIDIA_DRIVER_CAPABILITIES=all    # GUI related
+        runtime: nvidia

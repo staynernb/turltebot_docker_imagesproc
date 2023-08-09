@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+    turtlebot:
+        container_name: docker-turtle
+        build: .
+        image: turtlebot-docker
+        network_mode: "host"
+        restart: unless-stopped                 # Restart the container unless manually stopped
+        volumes:
+          - /tmp/.X11-unix:/tmp/.X11-unix:rw    # GUI related
+          - type: bind                          # Mount Persistent Directory   
+            source: ./turtlebot_docker_shared
+            target: /app
+          - type: bind                          # Mount Persistent Directory   
+            source: ./catkin_ws
+            target: /home/rosuser/catkin_ws
+        environment:
+            - PYTHONUNBUFFERED=1
+            - DISPLAY                           # GUI related
+            - QT_X11_NO_MITSHM=1                # GUI related
+
+        privileged: true                        # GUI related                       
+
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+    
+    turtlebot-win:
+        extends:
+            service: turtlebot
+        environment:
+            - DISPLAY=host.docker.internal:0.0  # GUI related
+
+    turtlebot-nvidia:
+        extends:
+            service: turtlebot
+        environment:
+            - NVIDIA_VISIBLE_DEVICES=all        # GUI related
+            - NVIDIA_DRIVER_CAPABILITIES=all    # GUI related
+        runtime: nvidia  
+
+    turtlebot-win-nvidia:
+        extends:
+            service: turtlebot-win
+        environment:
+            - NVIDIA_VISIBLE_DEVICES=all        # GUI related
+            - NVIDIA_DRIVER_CAPABILITIES=all    # GUI related
+        runtime: nvidia
