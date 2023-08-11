@@ -160,7 +160,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/talker.py scripts/listener.py scripts/lidar.py scripts/navigation.py scripts/goforward.py scripts/gotoapoint.py scripts/bag_to_image.py scripts/get_bag_msgs_syncro.py
+  scripts/talker.py scripts/listener.py scripts/listener_simu.py scripts/lidar.py scripts/navigation.py scripts/goforward.py scripts/gotoapoint.py scripts/bag_to_image.py scripts/get_bag_msgs_syncro.py scripts/gotoapoint_simu.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

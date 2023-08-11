@@ -1,7 +1,13 @@
-# Uncommented the lines if you run in the real robot
+# Comment the lines if you run in the robot on simulation
 # export the robot model and robot env
-export ROS_HOSTNAME=10.100.47.83
-export ROS_MASTER_URI=http://10.100.48.7:11311
+alias turtlebotmaster='export ROS_MASTER_URI=http://10.100.48.7:11311'
+alias localmaster='export ROS_MASTER_URI=http://localhost:11311'
+export ROS_HOSTNAME=localhost
 export TURTLEBOT3_MODEL=waffle_pi
-#sudo cp /app/model.sdf /opt/ros/noetic/share/turtlebot3_gazebo/models/turtlebot3_waffle_pi/model.sdf 
 source /home/rosuser/catkin_ws/devel/setup.bash
+
+turtlebotmaster
+
+
+# Options
+# sudo cp /app/model.sdf /opt/ros/noetic/share/turtlebot3_gazebo/models/turtlebot3_waffle_pi/model.sdf 

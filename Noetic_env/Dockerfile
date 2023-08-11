@@ -44,3 +44,8 @@ RUN echo "source /usr/share/gazebo/setup.sh" >> /home/${USER}/.bashrc && \
 COPY ./bashrc_turtlebot_include /home/${USER}/.bashrc_turtlebot_include 
 RUN echo "source /home/${USER}/.bashrc_turtlebot_include" >> /home/${USER}/.bashrc
 
+# Optionals to run examples
+RUN sudo apt install -y python3-tk
+RUN sudo apt install -y pip
+RUN pip install pandas
+

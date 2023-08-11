@@ -1,0 +1,7 @@
+# ignore ALL files in the shared folder
+Humble_env/turtlebot_docker_shared/* 
+Noetic_env/turtlebot_docker_shared/*
+
+# Keep the folder
+!Noetic_env/turtlebot_docker_shared/.gitkeep
+!Humble_env/turtlebot_docker_shared/.gitkeep

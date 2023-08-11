@@ -19,7 +19,7 @@ ssh ubuntu@130.233.123.205
 ssh ubuntu@192.168.220.1
 ```
 
-### Robot connected to aalto_open
+### Robot connected to aalto_open (Default way)
 ```
 ssh ubuntu@10.100.48.7
 ```
@@ -121,6 +121,22 @@ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 
+### Creating Python codes to interact with the robot
+
+The easier way is create the python code inside the folder [Catkin_ws/src/beginner_tutorials](/Noetic_env/catkin_ws/src/beginner_tutorials/).
+
+After create the file run:
+
+```
+cd ~/catkin_ws
+source ./devel/setup.bash
+```
+
+So will be possible to run your file with:
+```
+rosrun beginner_tutorials $file_name
+```
+
 ## Shared folder
 
 The folder [turtlebot_docker_shared](/Noetic_env/turtlebot_docker_shared/) is shared with the docker, when the docker initialize, the files of this folder will be shared with the folder */app/* in the docker directory. 
@@ -139,17 +155,3 @@ If you want to send files of the host to be used in the docker, is just needed p
  - If the wifi of the turtlebot is appearing but not connecting, access the turtlebot by ethernet cable and run: - sudo systemctl start dnsmasq
  - nvidia not tested.
  - When you do git clone from this repository from a windows computer, please change the format of End Line sequence of [bashrc_turtlebot_include](./bashrc_turtlebot_include) from CRLF to LF.
-
-
- ### If you want to run personalized code in python accesing ros nodes:
- ```
- cd ~/catkin_ws
- source ./devel/setup.bash
- ```
-
- util scripts:
- ```
- rosrun beginner_tutorials listener.py
- rosrun beginner_tutorials lidar.py
-```
-    

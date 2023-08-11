@@ -17,6 +17,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 #import imageio.v3 as iio
 import numpy as np
+import pandas as pd
 def main():
     """Extract a folder of images from a rosbag.
     """
@@ -34,7 +35,7 @@ def main():
     #                        dtype=np.uint8)
     #iio.imwrite('output/grayscale.png', depth_instensity)
 
-    bag = rosbag.Bag("/app/bag.bag", "r")
+    bag = rosbag.Bag("/app/corridor.bag", "r")
     bridge = CvBridge()
     count = 0
     for topic, msg, t in bag.read_messages(topics=["/sensorring_cam3d/depth/image_rect"]):
@@ -43,20 +44,33 @@ def main():
         cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough")
 
         #print(msg)
-        cv2.imwrite(os.path.join("/app/depth2", "frame%06i.png" % count), cv_img)
+        cv2.imwrite(os.path.join("/app", "frame%06i.png" % count), cv_img)
+        
+        #print(msg)
+        #im = iio.imread('./image/depth/frame001500.npy')
+        #print(im.shape)
+        
+        #cv_img = cv_img.astype('float32')
+        #cv_img /= 255
         
         print ("Wrote image %i" % count )
         print("Seq: ", msg.header.seq )
         image_np = np.asarray(cv_img)
+        filled = pd.DataFrame(image_np).fillna(0)
         
-        np.save(os.path.join("/app/depth_npy", "frame%06i.npy" % count), cv_img)
+        print(filled.max().max())
+        print(filled.min().min())
 
-        #from matplotlib import pyplot as plt
-        #plt.imshow(image_np, interpolation='nearest')
-        #plt.show()
+        print(filled)
+        np.save(os.path.join("/app", "frame%06i.npy" % count), cv_img)
+
+        from matplotlib import pyplot as plt
+        plt.imshow(filled, interpolation='nearest')
+        plt.show()
 
         count += 1
-
+        if count > 2:
+            break
     bag.close()
     
 

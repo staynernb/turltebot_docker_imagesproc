@@ -61,6 +61,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/beginner_tutorials" TYPE PROGRAM FILES "/home/rosuser/catkin_ws/build/beginner_tutorials/catkin_generated/installspace/listener_simu.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/beginner_tutorials" TYPE PROGRAM FILES "/home/rosuser/catkin_ws/build/beginner_tutorials/catkin_generated/installspace/lidar.py")
 endif()
 
@@ -82,5 +86,9 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/beginner_tutorials" TYPE PROGRAM FILES "/home/rosuser/catkin_ws/build/beginner_tutorials/catkin_generated/installspace/get_bag_msgs_syncro.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/beginner_tutorials" TYPE PROGRAM FILES "/home/rosuser/catkin_ws/build/beginner_tutorials/catkin_generated/installspace/gotoapoint_simu.py")
 endif()
 

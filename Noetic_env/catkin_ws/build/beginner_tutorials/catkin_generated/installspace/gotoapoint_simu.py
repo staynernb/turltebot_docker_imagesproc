@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2015, Mark Silliman
@@ -72,8 +72,8 @@ def gotogoal(odom,theta,scan):
     #move.pose.position.y = -0.349
     #move.pose.position.z = 0
     
-    xr = abs((distance-0.4)*math.cos(theta*math.pi/180))
-    yr = abs((distance-0.4)*math.sin(theta*math.pi/180))
+    xr = abs((distance-0.15)*math.cos(theta*math.pi/180))
+    yr = abs((distance-0.15)*math.sin(theta*math.pi/180))
     if theta < 0:
         yr = -yr
 

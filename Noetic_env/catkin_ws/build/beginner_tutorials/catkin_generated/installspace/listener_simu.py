@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from sensor_msgs.msg import Image
@@ -14,13 +14,13 @@ bridge = CvBridge()
 def listener():
 
     count = 0
-    while count < 50:
+    while count < 1:
         count = count +1
         rospy.init_node('listener', anonymous=True)
 
         #rospy.Subscriber('/camera/rgb/image_raw', Image, callback)
         msg = rospy.wait_for_message("/camera/rgb/image_raw", Image, timeout=None)
-        if count == 49:
+        if count == 1:
             
             print("Received an image!")
             try:
